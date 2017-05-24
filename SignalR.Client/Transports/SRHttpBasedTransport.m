@@ -56,6 +56,9 @@
     [request setTimeoutInterval:30];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+    operation.securityPolicy.allowInvalidCertificates = YES;
+    [operation.securityPolicy setValidatesDomainName:NO];
     [operation setResponseSerializer:[AFJSONResponseSerializer serializer]];
     //operation.shouldUseCredentialStorage = self.shouldUseCredentialStorage;
     //operation.credential = self.credential;
@@ -88,6 +91,9 @@
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:[[url URL] absoluteString] parameters:@{ @"data" : data } error:nil];
     [connection prepareRequest:request]; //TODO: prepareRequest
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+    operation.securityPolicy.allowInvalidCertificates = YES;
+    [operation.securityPolicy setValidatesDomainName:NO];
     [operation setResponseSerializer:[AFJSONResponseSerializer serializer]];
     //operation.shouldUseCredentialStorage = self.shouldUseCredentialStorage;
     //operation.credential = self.credential;
@@ -147,6 +153,9 @@
         [connection prepareRequest:request]; //TODO: prepareRequest
         [request setTimeoutInterval:2];
         AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        operation.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+        operation.securityPolicy.allowInvalidCertificates = YES;
+        [operation.securityPolicy setValidatesDomainName:NO];
         [operation setResponseSerializer:[AFJSONResponseSerializer serializer]];
         //operation.shouldUseCredentialStorage = self.shouldUseCredentialStorage;
         //operation.credential = self.credential;
